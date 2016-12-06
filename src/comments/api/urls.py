@@ -3,8 +3,7 @@ from django.contrib import admin
 
 from .views import (
     CommentListAPIView,
-    CommentDetailAPIView
-
+    CommentDetailAPIView,
     )
 
 urlpatterns = [

@@ -29,7 +29,8 @@ from posts.api.pagination import (
 from comments.models import Comment
 
 from .serializers import (
-	CommentSerializer
+	CommentSerializer,
+	CommentDetailSerializer
 	)
 
 
@@ -43,9 +44,9 @@ from .serializers import (
 
 
 class CommentDetailAPIView(RetrieveAPIView):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-	# lookup_field = 'slug'
+	queryset = Comment.objects.all()
+	serializer_class = CommentDetailSerializer
+	lookup_field = 'id'
 
 # class PostUpdateAPIView(RetrieveUpdateAPIView):
 # 	queryset = Post.objects.all()
