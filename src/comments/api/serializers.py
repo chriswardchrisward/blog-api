@@ -115,3 +115,11 @@ class CommentDetailSerializer(ModelSerializer):
 			return obj.children().count()
 		return 0
 
+class CommentEditSerializer(ModelSerializer):
+	class Meta:
+		model = Comment
+		fields = [
+			'id',
+			'content',
+			'timestamp',
+		]
