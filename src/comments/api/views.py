@@ -34,7 +34,7 @@ from posts.api.pagination import (
 from comments.models import Comment
 
 from .serializers import (
-	CommentSerializer,
+	CommentListSerializer,
 	CommentDetailSerializer,
 	create_comment_serializer,
 	)
@@ -86,14 +86,14 @@ class CommentDetailAPIView(DestroyModelMixin, UpdateModelMixin, RetrieveAPIView)
 # 	permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
 class CommentListAPIView(ListAPIView):
-	serializer_class = CommentSerializer
+	serializer_class = CommentListSerializer
 	filter_backends = [SearchFilter, OrderingFilter]
 	search_fields = ['content', 'user__first_name']
 
 	pagination_class = PostPageNumberPagination
 
 	def get_queryset(self, *arg, **kwargs):
-		queryset_list = Comment.objects.all()
+		queryset_list = Comment.objects.all().filter(id__gte=0)
 		# queryset_list = super(PostDetailAPIView, self).get_queryset(*args, **kwars) #Redundant to line above
 		query = self.request.GET.get("q")
 		if query:
