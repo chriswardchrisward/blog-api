@@ -44,6 +44,7 @@ from .serializers import (
 
 class UserCreateAPIView(CreateAPIView):
 	serializer_class = UserCreateSerializer
+	permission_classes = [AllowAny]
 	queryset = User.objects.all()
 
 
